@@ -76,7 +76,7 @@ class AdminView extends React.Component {
         }
         {
           (positiveQuestions || []).map((que, index) => {
-            if(!que.answer) return
+            if(!que.answer) return;
             return(
               <div key={index.toString()}>
                 <p>{`${index + 1}) ${que.question}`}: <b>{que.answer}</b></p>

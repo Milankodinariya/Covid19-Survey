@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "author": "Milan Kodinariya",
   "dependencies": {
-    "@coreui/react": "^3.0.4",
     "antd": "3.19.8",
     "axios": "0.19.2",
     "core-js": "2.6.5",

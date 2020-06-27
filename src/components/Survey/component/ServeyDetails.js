@@ -79,7 +79,7 @@ class SurveyDetails extends React.Component {
 
   onTestDateChange = (value, index) => {
     let { testingDate } = this.state
-    testingDate[index].testDate = value
+    testingDate[index] = value
     this.setState({
       testingDate
     })
@@ -101,13 +101,29 @@ class SurveyDetails extends React.Component {
     })
   }
 
+  onTestingChange = (value) => {
+    let { testingDate } = this.state
+    this.setState({
+      testTime: value,
+      testingDate: Array.from({length: value}, (v, i) => testingDate[i] ? testingDate[i] : "")
+    })
+  }
+
+  disabledFutureDate = endValue => {
+    const startValue = new Date();
+    if (!endValue || !startValue) {
+      return false;
+    }
+    return endValue.valueOf() > startValue.valueOf();
+  };
+
   getFollowingQuestion = () => {
     const { testTime, testingDate, positiveQuestions, patientDetails } = this.state
     const questions = patientDetails.positiveQuestions || []
     return(
       <div>
         <Form.Item label={"How many times have you been tested?"}>
-          <InputNumber name='testTime' value={testTime} onChange={(value) => this.setState({testTime: value, testingDate: Array.from({length: value}, (v, i) => ({testDate: ''}))})}/>
+          <InputNumber name='testTime' value={testTime} onChange={this.onTestingChange} min={0}/>
         </Form.Item>
         {
           (testingDate || []).map((test, index) => {
@@ -117,7 +133,8 @@ class SurveyDetails extends React.Component {
                   <DatePicker
                     format={'M/D/YYYY'}
                     onChange={(date, dateString) => this.onTestDateChange(dateString, index)}
-                    value={test.testDate ? moment(test.testDate) : null}
+                    value={test ? moment(test) : null}
+                    disabledDate={this.disabledFutureDate}
                   />
                 </Form.Item>
               </div>
@@ -136,7 +153,7 @@ class SurveyDetails extends React.Component {
                         <Radio value={que.options[1]} name="isNegative" checked={questions[index].answer === que.options[1]} onChange={(event) => this.onReportChange(event, index)}>No</Radio>
                       </>
                       :
-                      <InputNumber value={questions[index].answer} onChange={(value) => this.onPositiveQusChange(value, index)}/>
+                      <InputNumber value={questions[index].answer} onChange={(value) => this.onPositiveQusChange(value, index)} min={0}/>
                   }
                 </Form.Item>
               </div>

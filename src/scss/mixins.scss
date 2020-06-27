@@ -1,0 +1,36 @@
+@mixin scroll-bar-ui {
+  &::-webkit-scrollbar {
+    width: 0;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    box-shadow: none;
+    &:hover {
+      &::-webkit-scrollbar {
+        width: 20px;
+      }
+    }
+  }
+
+  &::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #139bc2;
+  }
+  &:hover {
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      width: 20px;
+    }
+  }
+  ::-webkit-scrollbar:hover {
+    height: 40px;
+    width: 40px;
+  }
+}

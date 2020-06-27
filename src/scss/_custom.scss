@@ -1,0 +1,70 @@
+.main {
+  background: rgba(240, 244, 245, 0.58);
+}
+
+.loading {
+  width: 100px;
+  height: 90px;
+  margin: 20px auto;
+  padding-left: 55px;
+}
+
+.w-100-p {
+  width: 100% !important;
+}
+
+.w-50-p {
+  width: 50% !important;
+}
+
+.w-30-p {
+  width: 30% !important;
+}
+
+.w-15-p {
+  width: 15% !important;
+}
+
+.header-fixed .app-header {
+  z-index: 1000 !important;
+}
+
+.navbar-nav {
+  .nav-item {
+    &.active {
+      a {
+        color: blue !important;
+      }
+    }
+  }
+}
+
+// Here you can add other styles
+@media (min-width: 992px) {
+  .sidebar-fixed {
+    .sidebar {
+      width: 80px;
+    }
+  }
+  .sidebar-lg-show {
+    .sidebar {
+      width: 200px;
+    }
+  }
+  .sidebar-fixed {
+    .main {
+      margin-left: 80px;
+    }
+  }
+  .sidebar-lg-show.sidebar-fixed {
+    .main {
+      margin-left: 200px;
+    }
+  }
+
+  html:not([dir="rtl"]) .sidebar {
+    margin-left: 0;
+  }
+}
+
+
